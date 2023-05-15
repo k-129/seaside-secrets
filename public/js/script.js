@@ -2,3 +2,4 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("SeaSide-Secrets JS imported successfully!");
 });
+

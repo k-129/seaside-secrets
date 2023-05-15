@@ -24,6 +24,7 @@ const beachSchema = new Schema(
       type: String,
       required: true,
     },
+    imageUrl: String
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

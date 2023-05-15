@@ -1,0 +1,51 @@
+<h2>Create a Beach</h2>
+
+<div class="row">
+   <div class="col-md-6">
+        <form action="/beaches/create" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>
+                    Image:
+                    <input type="file" name="imageUrl" class="form-control-file"/>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Name:
+                <input type="text" name="name" class="form-control" />
+               </label>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Location:
+                <input type="text" name="location" class="form-control" />
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Description:
+                <textarea name="description" cols="30" rows="5" class="form-control"></textarea>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Tips:
+                <input type="text" name="tips" class="form-control" />
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Filters:
+                <input type="text" name="filters" class="form-control" />
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Beach</button>
+        </form>
+   </div>
+</div>
