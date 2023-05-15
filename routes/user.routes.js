@@ -120,9 +120,10 @@ router.post('/login', (req, res)=>{
 
 //USER PROFILE  
 router.get('/profile', (req,res)=>{
+    const currentUser = req.session.currentUser._id
     async function getUserFromDb(){
         try{
-        let foundUsers = await User.find();
+        let foundUsers = await User.findById(currentUser);
         res.render('user/user-profile.hbs', {users: foundUsers});
         }
         catch(error){
@@ -132,6 +133,51 @@ router.get('/profile', (req,res)=>{
     getUserFromDb();
 });
 
+
+//UPDATE PROFILE
+
+// GET route to display the form to update a user
+router.get('/user/:userId/edit', (req, res)=>{
+    // Destructuring the req.params.bookId object
+    const {userId} = req.params;
+
+    // Feedback regarding req.params.bookId
+    // console.log(bookId);
+
+    async function findUser(){
+        try{
+            // get info of the user we want to edit
+            let userToEdit = await User.findById(userId);
+            // Render info with hbs view
+            res.render('user/user-edit.hbs', {user: userToEdit});
+        }
+        catch (error){
+            console.log(error);
+        }
+    }
+
+    findUser();
+});
+
+// POST route to actually make updates on a user
+
+router.post('/user/:userId/edit', (req, res)=>{
+    // destructuring the req.params.bookId
+    const {userId} = req.params; 
+    const {name, email} = req.body;
+
+    async function updateUser(){
+        try{
+          let updatedUser = await User.findByIdAndUpdate(userId, {name, email}, {new: true});
+          res.redirect(`/profile`);
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    updateUser();
+});
 
 
 /// Export Router
