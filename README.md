@@ -87,7 +87,7 @@ Beaches Model
 ```javascript
 {
   name: String,
-  localization: String,
+  location: String,
   description: String,
   tips: String,
   filters: String
