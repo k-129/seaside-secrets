@@ -3,30 +3,16 @@
     <hr>
 
     <div class="row">
-{{!-- 
-        {{#each beaches}}
-            <div class="col-md-4">
-                <article class="beach">
-                    <h2>{{results.formatted_address}}</h2>
-                    <hr>
-                    <img src="{{imageUrl}}" alt="" style="width:100%;">
-                    <p> <b>Location:</b> {{results.formatted_address}}</p>
-                    <p><b>Description:</b> {{description}}</p>
-                    <p><b>Tips:</b> {{tips}}</p>
-                    <p><b>Filters:</b> {{filters}}</p>
-                    </div>
-                </article>
-            </div>
-        {{/each}} --}}
-        
-        <h1>Beaches in Portugal</h1>
     <ul>
       {{#each beaches}}
       <li>
-        <h2>{{this.name}}</h2>
-        <img src="{{this.photo}}" alt="{{this.name}}" />
-        <p>Location: {{this.location}}</p>
-      </li>
+        
+        <h2><a href="/beaches/">{{this.name}}</a></h2> 
+{{!--         <img src="{{this.photo.photo_reference}}" alt="{{this.name}}" />
+ --}}        <p>Location: {{this.formatted_address}}</p>
+            <a target="_blank" href="https://www.google.com/maps/place/{{this.geometry.location.lat}},{{this.geometry.location.lng}}">{{this.formatted_address}}</a>
+
+       </li>
       {{/each}}
     </ul>
     </div>

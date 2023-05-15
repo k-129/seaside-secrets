@@ -1,0 +1,20 @@
+<section class="container">
+    {{#each beaches}}
+    <h1>{{this.name}}</h1>
+    <hr>
+
+    <div class="row">
+
+        {{!-- <img src="{{this.photo.photo_reference}}" alt="{{this.name}}" />
+        --}} 
+        
+        <p class="form-control" >{{description}}</p>
+
+        <p>Location: {{this.formatted_address}}</p>
+
+        <p>Coordinates: {{this.geometry.location.lat}}, {{this.geometry.location.lng}}</p>
+
+        {{/each}}
+    </div>
+
+</section>

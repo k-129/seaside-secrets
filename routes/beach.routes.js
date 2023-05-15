@@ -8,16 +8,17 @@ router.get("/beaches", (req, res) => {
   axios
     .get("https://maps.googleapis.com/maps/api/place/textsearch/json", {
       params: {
-        query: "beaches",
+        query: "beaches in Portugal",
         key: process.env.API_KEY,
       },
     })
     .then((response) => {
       // Process the geocoding results here
       const results = response.data.results;
-      console.log(results);
+      //console.log(results);
 
       // Pass into a view
+      res.render('beaches/beaches-list', {beaches: results})
     })
     .catch((error) => {
       console.error("Geocoding request failed:", error);
@@ -25,4 +26,5 @@ router.get("/beaches", (req, res) => {
     });
 });
 
+  
 module.exports = router; 
