@@ -10,19 +10,17 @@ const beachSchema = new Schema(
     },
     address: {
       type: String,
-      required: true,
     },
     description: {
       type: String,
-      required: true,
     },
     location: {
-      type: Number,
-      required: true,
+      lat: {type: Number}, 
+      lng: {type: Number}
     },
     filters: {
       type: String,
-      required: true,
+
     },
     rating: {
       type: Number

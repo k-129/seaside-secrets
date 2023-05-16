@@ -32,8 +32,8 @@ const index = require('./routes/index');
 app.use('/', index);
 
 // Link Auth Express Routes with Express App
-const authRoutes = require('./routes/auth.routes');
-app.use('/', authRoutes);
+/* const authRoutes = require('./routes/auth.routes');
+app.use('/', authRoutes); */
 
 const beachRoutes = require('./routes/beach.routes');
 app.use('/', beachRoutes);

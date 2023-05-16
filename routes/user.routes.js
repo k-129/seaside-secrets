@@ -21,7 +21,7 @@ router.get('/signup', isLoggedOut, (req, res)=>{
 
 router.post('/signup', (req, res)=>{
     
-    const {username, password} = req.body;
+    const {email, password} = req.body;
 
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
@@ -31,8 +31,8 @@ router.post('/signup', (req, res)=>{
     }
 
     // Make sure users fill all mandatory fields
-    if(!username || !password){
-        res.render('auth/signup', {errorMessage: 'All fields are mandatory. Please add your username and password, NOW!'});
+    if(!email || !password){
+        res.render('auth/signup', {errorMessage: 'All fields are mandatory. Please add your email and password, NOW!'});
         return;
     }
 
@@ -47,7 +47,7 @@ router.post('/signup', (req, res)=>{
         
         // save to DB 
         let newUser = await User.create({
-            username, 
+            email, 
             password: hashedPassword,
         }); 
 
@@ -63,12 +63,12 @@ router.post('/signup', (req, res)=>{
             // 5xx - server-side error; 
             // 505 - not found on server; 
             // 11000 - native MongoDB error --> you tried to submit a value that was created before. 
-                    // same username as other user. 
+                    // same email as other user. 
 
             res.status(500).render('auth/signup', {errorMessage: error.message});
         } 
         else if (error.code === 11000){
-            res.status(500).render('auth/signup', {errorMessage: 'Username must be unique. Choose an username that are original, if you may.', });
+            res.status(500).render('auth/signup', {errorMessage: 'email must be unique. Choose an email that is original, if you may.', });
         }
         
         else{
@@ -87,10 +87,10 @@ router.get('/login', (req,res)=>{
 });
 
 router.post('/login', (req, res)=>{
-    const {username, password} = req.body;
+    const {email, password} = req.body;
 
-    // Validate if the user submitted username / password blank
-    if(username === '' || password === ''){
+    // Validate if the user submitted email / password blank
+    if(email === '' || password === ''){
         res.render('author/login', {
             errorMessage: 'Please fill all the required fields'
         });
@@ -99,13 +99,13 @@ router.post('/login', (req, res)=>{
 
     async function manageDb(){
         try{
-            let user = await User.findOne({username});
+            let user = await User.findOne({email});
             if(!user){
-                res.render('auth/login', {errorMessage: 'Username is not registered. Try other, if you may.'})
+                res.render('auth/login', {errorMessage: 'email is not registered. Try other, if you may.'})
             } else if (bcryptjs.compareSync(password, user.password)){
                 console.log('loggedin');
                 req.session.currentUser = user; 
-                res.redirect('/userProfile');
+                res.render('user/userProfile');
             } else {
                 res.render('auth/login', {errorMessage: 'Wrong Password'})
             }
