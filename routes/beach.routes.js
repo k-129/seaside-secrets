@@ -20,10 +20,10 @@ router.post('/beaches/create', async (req, res, next) => {
 
 //see all celebs and celebs details
 
-router.get('/beaches-list', async (req, res, next) => {
+router.get('/beaches', async (req, res, next) => {
   try {
     const allBeaches = await Beach.find();
-    res.render('/beaches', { allBeaches });
+    res.render('beaches/beaches-list', { allBeaches });
   } catch (error) {
     console.log(error);
     next(error);

@@ -103,7 +103,7 @@ router.post('/login', (req, res)=>{
             if(!user){
                 res.render('auth/login', {errorMessage: 'email is not registered. Try other, if you may.'})
             } else if (bcryptjs.compareSync(password, user.password)){
-                console.log('loggedin');
+                //console.log('loggedin');
                 req.session.currentUser = user; 
                 res.redirect('/profile')
             } else {
