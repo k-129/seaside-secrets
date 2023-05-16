@@ -82,7 +82,7 @@ router.post('/signup', (req, res)=>{
 // LOGIN
 
 // GET Route to display the login form to the user 
-router.get('/login', (req,res)=>{
+router.get('/login',isLoggedOut, (req,res)=>{
     res.render('auth/login.hbs');
 });
 
@@ -90,9 +90,14 @@ router.post('/login', (req, res)=>{
     const {email, password} = req.body;
 
     // Validate if the user submitted email / password blank
-    if(email === '' || password === ''){
+    if(email === ''){
         res.render('author/login', {
-            errorMessage: 'Please fill all the required fields'
+            errorMessage: 'Please write your email'
+        });
+        return
+    }else if (password === ''){
+        res.render('author/login', {
+            errorMessage: 'Please write your password'
         });
         return
     }
@@ -119,7 +124,7 @@ router.post('/login', (req, res)=>{
 
 
 //USER PROFILE  
-router.get('/profile', (req,res)=>{
+router.get('/profile',isLoggedIn, (req,res)=>{
     const currentUser = req.session.currentUser._id
     async function getUserFromDb(){
         try{
@@ -137,7 +142,7 @@ router.get('/profile', (req,res)=>{
 //UPDATE PROFILE
 
 // GET route to display the form to update a user
-router.get('/user/:userId/edit', (req, res)=>{
+router.get('/user/edit/:userId',isLoggedIn, (req, res)=>{
     // Destructuring the req.params.bookId object
     const {userId} = req.params;
 
@@ -161,7 +166,7 @@ router.get('/user/:userId/edit', (req, res)=>{
 
 // POST route to actually make updates on a user
 
-router.post('/user/:userId/edit', (req, res)=>{
+router.post('/user/edit/:userId', (req, res)=>{
     // destructuring the req.params.bookId
     const {userId} = req.params; 
     const {name, email} = req.body;

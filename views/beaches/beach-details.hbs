@@ -1,21 +1,20 @@
 <section class="container">
-    {{#each allBeaches}}
     <h1>{{this.name}}</h1>
+    <a href="/beaches/edit/{{this._id}}">Edit Beach</a>
+    <a href="/beaches/delete/{{this._id}}">Delete Beach</a>
     <hr>
     <div class="row">
-        <h2>{{this.name}}</h2>
         {{!-- <img src="{{this.photo.photo_reference}}" alt="{{this.name}}" />
         --}} 
         
-        <p class="form-control" >{{description}}</p>
+        <p class="form-control" >{{this.description}}</p>
 
-        <p>Location: {{this.formatted_address}}</p>
+        <p>Location: <a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.address}}</a></p>
 
-        <p>Coordinates: {{this.geometry.location.lat}}, {{this.geometry.location.lng}}</p>
+        <p>Coordinates: <a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.location.lat}},{{this.location.lng}}</a></p>
 
         <p></p>
 
-        {{/each}}
     </div>
 
 </section>
