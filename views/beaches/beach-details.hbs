@@ -2,7 +2,7 @@
     {{#each beaches}}
     <h1>{{this.name}}</h1>
     <hr>
-
+  const { name, address, description, location, filters, rating } = req.body;
     <div class="row">
         <h2>{{this.name}}</h2>
         {{!-- <img src="{{this.photo.photo_reference}}" alt="{{this.name}}" />
@@ -13,6 +13,8 @@
         <p>Location: {{this.formatted_address}}</p>
 
         <p>Coordinates: {{this.geometry.location.lat}}, {{this.geometry.location.lng}}</p>
+
+        <p></p>
 
         {{/each}}
     </div>

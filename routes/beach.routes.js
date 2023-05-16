@@ -23,7 +23,7 @@ router.post('/beaches/create', async (req, res, next) => {
 router.get('/beaches-list', async (req, res, next) => {
   try {
     const allBeaches = await Beach.find();
-    res.render('beaches', { allBeaches });
+    res.render('/beaches', { allBeaches });
   } catch (error) {
     console.log(error);
     next(error);
