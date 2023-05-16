@@ -7,14 +7,19 @@
       {{#each beaches}}
       <li>
         
-        <h2><a href="/beaches/">{{this.name}}</a></h2> 
-{{!--         <img src="{{this.photo.photo_reference}}" alt="{{this.name}}" />
- --}}        <p>Location: {{this.formatted_address}}</p>
-            <a target="_blank" href="https://www.google.com/maps/place/{{this.geometry.location.lat}},{{this.geometry.location.lng}}">{{this.formatted_address}}</a>
-
+        <h2><a href="/beaches/{{place_id}}">{{this.name}}</a></h2> 
+        <img src="https://maps.googleapis.com/maps/api/place/photo{{this.photo.photo_reference}}" alt="{{this.name}}" />        
+        <a target="_blank" href="https://www.google.com/maps/place/{{this.geometry.location.lat}},{{this.geometry.location.lng}}">{{this.formatted_address}}</a>
        </li>
       {{/each}}
     </ul>
     </div>
 
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item"><a class="page-link" href="/beaches">1</a></li>
+      <li class="page-item"><a class="page-link" href="/beaches/2">2</a></li>
+      <li class="page-item"><a class="page-link" href="/beaches/3">3</a></li>
+    </ul>
+  </nav>
 </section>

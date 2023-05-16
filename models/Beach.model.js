@@ -8,7 +8,7 @@ const beachSchema = new Schema(
       required: false,
       trim: true,
     },
-    location: {
+    address: {
       type: String,
       required: true,
     },
@@ -16,15 +16,18 @@ const beachSchema = new Schema(
       type: String,
       required: true,
     },
-    tips: {
-      type: String,
+    location: {
+      type: Number,
       required: true,
     },
     filters: {
       type: String,
       required: true,
     },
-    imageUrl: String
+    rating: {
+      type: Number
+    },
+    imageUrl: {type:String}
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
