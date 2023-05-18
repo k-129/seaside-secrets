@@ -9,9 +9,9 @@ const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard');
 router.get('/beaches/create',isLoggedIn, (req, res, next) => {res.render('beaches/beaches-create')});
 
 router.post('/beaches/create', async (req, res, next) => {
-  const { name, address, description, location, filters, rating } = req.body;
   try {
-    await Beach.create({ name, address, description, location, filters, rating});
+  const { name, address, description, location, filters,  } = req.body;
+    await Beach.create({ name, address, description, location, filters});
     res.redirect('/beaches');
   } catch (error) {
     //render again this

@@ -23,7 +23,8 @@ const beachSchema = new Schema(
 
     },
     rating: {
-      type: Number
+      type: Number,
+      default: 0
     },
     imageUrl: {type:String}
   },
