@@ -3,6 +3,12 @@
   <div class="col-md-6">
     <form action="/beaches/edit/{{_id}}" method="post" {{!-- enctype="multipart/form-data" --}}>
       <div class="form-group">
+         <div class="form-group">
+                <label>
+                    Image:
+                    <input type="file" name="image-upload" class="form-control-file"/>
+                </label>
+            </div>
         <label>Name:
           <input type="text" name="name" class="form-control" value="{{name}}" />
         </label>

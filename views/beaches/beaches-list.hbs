@@ -3,17 +3,15 @@
     <hr>
 
     <div class="row">
-    <ul>
       {{#each allBeaches}}
-      <li>
-        
-        <h2><a href="/beaches/{{_id}}">{{this.name}}</a></h2> 
 
-      {{!--   <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference={{this.photo.photo_reference}}&key=AIzaSyB4leYrdl-cauD6P_Yp5a96puee2MOIWDY" alt="{{this.name}}" />  --}}       
+      
+      <h2><a href="/beaches/{{_id}}" style="text-decoration: none;">{{this.name}}</a></h2> 
 
-        <a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.address}}</a>
-       </li>
+      <img width="20%" style="border-radius: 10%;" src="{{this.imageUrl}}" alt="{{this.name}}"/>       
+
+      <a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.address}}</a>
+      
       {{/each}}
-    </ul>
     </div>
 </section>
