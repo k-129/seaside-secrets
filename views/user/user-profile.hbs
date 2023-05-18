@@ -3,7 +3,7 @@
 
 <!-- weather report widget -->
 
-<a class="weatherwidget-io" href="https://forecast7.com/en/38d72n9d14/lisbon/" data-label_1="LISBON" data-label_2="WEATHER" >LISBON WEATHER</a>
+<a class="weatherwidget-io mt-5" href="https://forecast7.com/en/38d72n9d14/lisbon/" data-label_1="LISBON" data-label_2="WEATHER" >LISBON WEATHER</a>
 
 <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
@@ -11,36 +11,43 @@
 
 
 
-<!--  profile photo -->
-<img src="..." class="rounded float-start" alt="Your photo here">
 <!-- intro message -->
 
-<h1>Hello {{users.firstName}}!</h1>
+<h1 class="my-3 mx-5">Hello {{users.firstName}}!</h1>
+
+<div class="mx-5 my-5">
+    <a class="btn border bg-light border-info" href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+      <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+      </svg>
+    </a>
 
 
-<a href="/logout">Logout</a>
-<a href="/user/edit/{{users._id}}">Edit Profile</a>
 
+  <a class="btn border bg-light border-info" href="/user/edit/{{users._id}}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+    </svg>
+</a>
+</div>
 <!-- my favorites cards -->
-<h2>My Favorites</h2>
+<h2 class="mx-5 my-5">My Favorites</h2>
 
 <div class="container text-center">
-  <div class="row row-cols-4">
+  <div class="d-flex flex-wrap">
      
-     {{#each users.favorites}}
-     <div class="col">
-        <div class="card" style="width: 18rem;">
-         <img src="{{this.imageUrl}}" class="card-img-top" alt="...">
-          <div class="card-body">
+    {{#each users.favorites}}
+    <div class="d-flex mx-2 my-1">
+      <div class="card" style="width: 18rem;">
+        <img src="{{this.imageUrl}}" class="card-img-top" alt="{{this.name}}">
+        <div class="card-body">
           <h5 class="card-title">{{this.name}}</h5>
-         <p class="card-text">{{this.description}}</p>
-        <a href="/beaches/{{this._id}}" class="btn btn-primary">Let's Go!</a>
+          <p class="card-text">{{this.description}}</p>
+          <a href="/beaches/{{this._id}}" class="btn btn-primary">Know more</a>
+        </div>
       </div>
-     </div>
     </div>
-     {{/each}}
-   
-
+    {{/each}}
 
   </div>
 </div>

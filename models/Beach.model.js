@@ -18,10 +18,10 @@ const beachSchema = new Schema(
       lat: {type: Number}, 
       lng: {type: Number}
     },
-    filters: {
+    filters: [{
       type: String,
 
-    },
+    }],
     rating: {
       type: Number,
       default: 0
