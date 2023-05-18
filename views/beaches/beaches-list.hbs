@@ -1,17 +1,17 @@
-<section class="container">
+<section class="container pt-5">
     <h1 style="font-family:'Bebas Neue'; letter-spacing: 0.4rem; word-spacing: 1rem ">Beaches list</h1>
     <hr>
 <div class="row d-flex">
     {{#each allBeaches}}
-    <div class="card">
+    <div class="card m-2" >
 
       
-      <h2 class="card-title"><a href="/beaches/{{_id}}" style="text-decoration: none; color: black;">{{this.name}}</a></h2> 
+      <h2 class="card-title pt-2 pb-0"><a class="text-dark" style="font-family: 'Bebas Neue'; text-decoration: none; letter-spacing: 0.2rem; word-spacing: 0.25rem" href="/beaches/{{_id}}" style="text-decoration: none; color: black;">{{this.name}}</a></h2> 
 
      <a href="/beaches/{{_id}}"> <img class="card-img-top" src="{{this.imageUrl}}" alt="{{this.name}}"/></a>       
       <div class="card-body">
-        <p class="card-text"><a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.address}}</a></p>
-        <a href="/beaches/{{_id}}" class="btn btn-primary">Know more!</a>
+        <p class="card-text"><a class="text-dark" target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.address}}</a></p>
+        <a style="background-color: #94E1EF !important;" href="/beaches/{{_id}}" class="btn ">Know more!</a>
       </div>
       
       

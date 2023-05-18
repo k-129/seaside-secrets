@@ -1,35 +1,39 @@
+<div class="row pt-5">
 <h2>Update beach</h2>
-<div class="row">
-  <div class="col-md-6">
+  <div class="d-flex mt-4 p-4 justify-content-center border border-info">
     <form action="/beaches/edit/{{_id}}" method="post" {{!-- enctype="multipart/form-data" --}}>
       <div class="form-group">
-         <div class="form-group">
-                <label>
-                    Image:
-                    <input type="file" name="image-upload" class="form-control-file"/>
-                </label>
-            </div>
-        <label>Name:
-          <input type="text" name="name" class="form-control" value="{{name}}" />
-        </label>
+         
+        
+        <div class="p">
+          <label>Name:
+            <input type="text" name="name" class="form-control" value="{{name}}" />
+          </label>
+        </div>
+
+        <div>
+          <label>Name:
+            <input type="text" name="name" class="form-control" value="{{name}}" />
+          </label>
+        </div>
+  
+        <div class="form-group">
+          <label>Description:
+            <textarea name="description" cols="30" rows="4" class="form-control">{{description}}
+            </textarea>
+          </label>
+        </div>
+
+
+        <div class="form-group">
+          <label>Image:
+            <input type="file" name="movie-cover-image" class="form-control-file" />
+            <input type="text" name="existingImage" hidden value="{{imageUrl}}">
+          </label>
+        </div> 
+ 
+        <button type="submit" class="btn btn-success">Save changes</button>
       </div>
- 
-      <div class="form-group">
-        <label>Description:
-          <textarea name="description" cols="30" rows="4" class="form-control">{{description}}
-          </textarea>
-        </label>
-      </div>
- 
-{{!--       <div class="form-group">
-        <label>Image:
-          <input type="file" name="movie-cover-image" class="form-control-file" />
-          <input type="text" name="existingImage" hidden value="{{imageUrl}}">
-        </label>
-      </div> --}}
- 
-      <button type="submit" class="btn btn-success">Save changes</button>
- 
     </form>
   </div>
 </div>
