@@ -21,7 +21,7 @@ router.get('/signup', isLoggedOut, (req, res)=>{
 
 router.post('/signup', (req, res)=>{
     
-    const {email, password} = req.body;
+    const {firstName, lastName, email, password} = req.body;
 
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
@@ -31,8 +31,17 @@ router.post('/signup', (req, res)=>{
     }
 
     // Make sure users fill all mandatory fields
-    if(!email || !password){
-        res.render('auth/signup', {errorMessage: 'All fields are mandatory. Please add your email and password, NOW!'});
+    if(!email){
+        res.render('auth/signup', {errorMessage: 'Please add email.'});
+        return;
+    } else if (!password){
+        res.render('auth/signup', {errorMessage: 'Please add password.'});
+        return;
+    }else if (!firstName){
+        res.render('auth/signup', {errorMessage: 'Please add your first name.'});
+        return;
+    } else if(!lastName){
+        res.render('auth/signup', {errorMessage: 'Please add your last name.'});
         return;
     }
 
@@ -47,6 +56,8 @@ router.post('/signup', (req, res)=>{
         
         // save to DB 
         let newUser = await User.create({
+            firstName,
+            lastName,
             email, 
             password: hashedPassword,
         }); 
@@ -108,7 +119,6 @@ router.post('/login', (req, res)=>{
             if(!user){
                 res.render('auth/login', {errorMessage: 'email is not registered. Try other, if you may.'})
             } else if (bcryptjs.compareSync(password, user.password)){
-                //console.log('loggedin');
                 req.session.currentUser = user; 
                 res.redirect('/profile')
             } else {
@@ -169,11 +179,11 @@ router.get('/user/edit/:userId',isLoggedIn, (req, res)=>{
 router.post('/user/edit/:userId', (req, res)=>{
     // destructuring the req.params.bookId
     const {userId} = req.params; 
-    const {name, email} = req.body;
+    const {firstName, lastName, email} = req.body;
 
     async function updateUser(){
         try{
-          let updatedUser = await User.findByIdAndUpdate(userId, {name, email}, {new: true});
+          let updatedUser = await User.findByIdAndUpdate(userId, {firstName, lastName, email}, {new: true});
           res.redirect(`/profile`);
         }
         catch(error){
