@@ -1,17 +1,21 @@
 <section class="container">
-    <h1>Beaches list</h1>
+    <h1 style="font-family:'Bebas Neue'; letter-spacing: 0.4rem; word-spacing: 1rem ">Beaches list</h1>
     <hr>
-
-    <div class="row">
-      {{#each allBeaches}}
+<div class="row d-flex">
+    {{#each allBeaches}}
+    <div class="card">
 
       
-      <h2><a href="/beaches/{{_id}}" style="text-decoration: none;">{{this.name}}</a></h2> 
+      <h2 class="card-title"><a href="/beaches/{{_id}}" style="text-decoration: none; color: black;">{{this.name}}</a></h2> 
 
-      <img width="20%" style="border-radius: 10%;" src="{{this.imageUrl}}" alt="{{this.name}}"/>       
-
-      <a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.address}}</a>
+     <a href="/beaches/{{_id}}"> <img class="card-img-top" src="{{this.imageUrl}}" alt="{{this.name}}"/></a>       
+      <div class="card-body">
+        <p class="card-text"><a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.address}}</a></p>
+        <a href="/beaches/{{_id}}" class="btn btn-primary">Know more!</a>
+      </div>
       
-      {{/each}}
+      
     </div>
+      {{/each}}
+  </div>
 </section>
