@@ -164,7 +164,7 @@ router.get('/user/edit/:userId',isLoggedIn, (req, res)=>{
             // get info of the user we want to edit
             let userToEdit = await User.findById(userId);
             // Render info with hbs view
-            res.render('user/user-edit.hbs', {user: userToEdit});
+            res.render('user/edit-profile', {user: userToEdit});
         }
         catch (error){
             console.log(error);
@@ -179,11 +179,11 @@ router.get('/user/edit/:userId',isLoggedIn, (req, res)=>{
 router.post('/user/edit/:userId', (req, res)=>{
     // destructuring the req.params.bookId
     const {userId} = req.params; 
-    const {firstName, lastName, email} = req.body;
+    const {firstName, lastName} = req.body;
 
     async function updateUser(){
         try{
-          let updatedUser = await User.findByIdAndUpdate(userId, {firstName, lastName, email}, {new: true});
+          let updatedUser = await User.findByIdAndUpdate(userId, {firstName, lastName}, {new: true});
           res.redirect(`/profile`);
         }
         catch(error){

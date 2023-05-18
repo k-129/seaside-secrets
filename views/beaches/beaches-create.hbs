@@ -3,10 +3,11 @@
 <div class="row">
    <div class="col-md-6">
         <form action="/beaches/create" method="post" enctype="multipart/form-data">
+        
             <div class="form-group">
                 <label>
                     Image:
-                    <input type="file" name="imageUrl" class="form-control-file"/>
+                    <input type="file" name="image-upload" class="form-control-file"/>
                 </label>
             </div>
 
@@ -17,12 +18,12 @@
                </label>
             </div>
 
-            <div class="form-group">
+    {{!--         <div class="form-group">
                 <label>
                     Location:
                 <input type="text" name="location" class="form-control" />
                 </label>
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <label>

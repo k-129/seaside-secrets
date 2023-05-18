@@ -4,14 +4,19 @@ const axios = require("axios");
 const Beach = require("../models/Beach.model.js"); 
 // Require Auth Middleware
 const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard');
+const fileUpload = require("../config/cloudinary.config");
 
 
 router.get('/beaches/create',isLoggedIn, (req, res, next) => {res.render('beaches/beaches-create')});
 
-router.post('/beaches/create', async (req, res, next) => {
+router.post('/beaches/create',  fileUpload.single("image-upload"), async (req, res, next) => {
   try {
-  const { name, address, description, location, filters,  } = req.body;
-    await Beach.create({ name, address, description, location, filters});
+  const { name, address, description, filters  } = req.body;
+if(req.file){
+  await Beach.create({ name, address, description, filters, imageUrl: req.file.path});
+}else{
+  await Beach.create({ name, address, description, filters});
+}
     res.redirect('/beaches');
   } catch (error) {
     //render again this
@@ -25,6 +30,7 @@ router.post('/beaches/create', async (req, res, next) => {
 router.get('/beaches', async (req, res, next) => {
   try {
     const allBeaches = await Beach.find();
+    console.log(allBeaches)
     res.render('beaches/beaches-list', { allBeaches });
   } catch (error) {
     console.log(error);
@@ -57,9 +63,9 @@ router.get('/beaches/edit/:id', isLoggedIn, async (req, res, next) => {
 
 router.post('/beaches/edit/:id', async (req, res, next) => {
   const beachId = req.params.id;
-  const { name, address, description, location, filters, rating } = req.body;
+  const { name, description} = req.body;
   try {
-    const pickedBeach = await Beach.findByIdAndUpdate(beachId, { name, address, description, location, filters, rating });
+    const pickedBeach = await Beach.findByIdAndUpdate(beachId, { name,description});
     res.redirect(`/beaches/${beachId}`);
   } catch (error) {
     console.log(error);
