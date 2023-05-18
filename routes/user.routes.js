@@ -138,7 +138,7 @@ router.get('/profile',isLoggedIn, (req,res)=>{
     const currentUser = req.session.currentUser._id
     async function getUserFromDb(){
         try{
-        let foundUsers = await User.findById(currentUser);
+        let foundUsers = await User.findById(currentUser).populate("favorites")
         res.render('user/user-profile.hbs', {users: foundUsers});
         }
         catch(error){

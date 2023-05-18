@@ -22,7 +22,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    imageUrl: {type:String}
+    imageUrl: {type:String},
+    favorites: {
+      type: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Beach'
+      }]
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

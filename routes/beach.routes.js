@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const Beach = require("../models/Beach.model.js"); 
+const User = require("../models/User.model.js"); 
 // Require Auth Middleware
 const {isLoggedIn, isLoggedOut} = require('../middleware/route-guard');
 const fileUpload = require("../config/cloudinary.config");
@@ -42,7 +43,15 @@ router.get('/beaches/:id', async (req, res, next) => {
   const beachId = req.params.id;
   try {
     const selectedBeach = await Beach.findById(beachId);
-    res.render('beaches/beach-details', selectedBeach);
+    const currentUser = await User.findById(req.session.currentUser._id)
+
+    if (currentUser.favorites.includes(beachId)){
+      const isInFav = true
+      res.render('beaches/beach-details', {selectedBeach, isInFav});
+    }else{
+      res.render('beaches/beach-details', {selectedBeach});
+    }
+
   } catch (error) {
     console.log(error);
     next(error);

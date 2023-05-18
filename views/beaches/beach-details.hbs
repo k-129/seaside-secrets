@@ -1,17 +1,30 @@
 <section class="container">
-    <h1>{{this.name}}</h1>
-    <a href="/beaches/edit/{{this._id}}">Edit Beach</a>
-    <a href="/beaches/delete/{{this._id}}">Delete Beach</a>
+    <h1>{{selectedBeach.name}}</h1>
+    <a href="/beaches/edit/{{selectedBeach._id}}">Edit Beach</a>
+    <a href="/beaches/delete/{{selectedBeach._id}}">Delete Beach</a>
     <hr>
+
+{{#if isInFav}}
+
+<form action="/remove-favorites/{{selectedBeach._id}}" method="post">
+<button type="submit">Remove to Favorites</button>
+</form>
+{{else}}
+<form action="/add-favorites/{{selectedBeach._id}}" method="post">
+<button type="submit">Add to Favorites</button>
+</form>
+
+{{/if}}
+
     <div class="row">
-   <img src="{{this.imageUrl}}" alt="{{this.name}}" />
+   <img src="{{selectedBeach.imageUrl}}" alt="{{selectedBeach.name}}" />
        
         
-        <p class="form-control" >{{this.description}}</p>
+        <p class="form-control" >{{selectedBeach.description}}</p>
 
-        <p>Location: <a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.address}}</a></p>
+        <p>Location: <a target="_blank" href="https://www.google.com/maps/place/{{selectedBeach.location.lat}},{{selectedBeach.location.lng}}">{{selectedBeach.address}}</a></p>
 
-        <p>Coordinates: <a target="_blank" href="https://www.google.com/maps/place/{{this.location.lat}},{{this.location.lng}}">{{this.location.lat}},{{this.location.lng}}</a></p>
+        <p>Coordinates: <a target="_blank" href="https://www.google.com/maps/place/{{selectedBeach.location.lat}},{{selectedBeach.location.lng}}">{{selectedBeach.location.lat}},{{selectedBeach.location.lng}}</a></p>
 
         <p></p>
 
