@@ -1,24 +1,24 @@
 <div id="form">
-  <h2>Sign Up</h2>
-  <form action="/signup" method="POST">
+  <h2 class="mx-4 pt-5 ">Sign Up</h2>
+  <form action="/signup" method="POST" class="mx-4 pt-5 ">
 
     <label> First Name
-      <input type="text" name="firstName" placeholder="John" />
+      <input class="form-control mr-2" type="text" name="firstName" placeholder="John" />
     </label>
 
     <label> Last Name
-      <input type="text" name="lastName" placeholder="Doe" />
+      <input class="form-control mr-2" type="text" name="lastName" placeholder="Doe" />
     </label>
 
     <label> Email
-      <input type="email" name="email" placeholder="johndoe@email.com" />
+      <input class="form-control mr-2" type="email" name="email" placeholder="johndoe@email.com" />
     </label>
 
     <label> Password
-      <input type="password" name="password" placeholder="**********" />
+      <input class="form-control mr-2" type="password" name="password" placeholder="**********" />
     </label>
 
-    <button type="submit">Sign Up</button>
+    <button type="submit" class="btn btn-info">Sign Up</button>
 
 
     {{#if errorMessage}}

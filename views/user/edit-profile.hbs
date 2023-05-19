@@ -1,20 +1,20 @@
-<h2>Update profile</h2>
-<div class="row">
+<div class="d-flex flex-column justify-content-center pl-5 ml-5">
+<h2 class="mx-5 mt-5">Update profile</h2>
   <div class="col-md-6">
-    <form action="/user/edit/{{user._id}}" method="post" {{!-- enctype="multipart/form-data" --}}>
+    <form action="/user/edit/{{user._id}}" method="post" class="mx-5 my-5" {{!-- enctype="multipart/form-data" --}}>
       <div class="form-group">
         <label>Name:
-          <input type="text" name="firstName" class="form-control"  />
+          <input class="form-control mr-2" type="text" name="firstName" class="form-control"  />
         </label>
       </div>
 
       <div class="form-group">
         <label>Last Name:
-          <input type="text" name="lastName" class="form-control" />
+          <input class="form-control mr-2" type="text" name="lastName" class="form-control" />
         </label>
       </div>
 
-      <button type="submit" class="btn btn-success">Save changes</button>
+      <button type="submit" class="btn btn-info">Save changes</button>
  
     </form>
   </div>
